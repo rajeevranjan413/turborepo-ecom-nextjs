@@ -1,23 +1,28 @@
 import ProductList from "../../components/ProductList"
 
 // posts will be populated at build time by getStaticProps()
-export default function Blog({ posts}:any) {
+export default function Blog({ products}:any) {
     return (
-   <ProductList products={posts}/>
+   <ProductList products={products}/>
     )
 
 }
    
  
 export async function getStaticProps() {
-   
-    const res = await fetch('https://fakestoreapi.com/products')
-    const posts = await res.json()
+  let products = []
+  try{
+    const res = await fetch('http://fakestoreapi.com/products/')
+    products = await res.json()
+  }
+  catch(error){
+    console.log("Data fetching faild")
+  }
    
     
     return {
       props: {
-        posts,
+        products,
       },
     }
 }

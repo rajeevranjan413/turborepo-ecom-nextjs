@@ -1,3 +1,5 @@
+import { link } from "fs"
+import Link from "next/link"
 
 export interface IProduct {
     id: string
@@ -12,6 +14,9 @@ export interface IProduct {
 
 const Product = (props: any) => {
     return (
+
+        <Link href={`/product/${props.product.id}`}>
+
         <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
             <img src={props.product.image} alt={props.product.title} className="w-full h-56 object-cover object-center" />
             <div className="px-6 py-4">
@@ -20,6 +25,7 @@ const Product = (props: any) => {
                 <p className="text-gray-700 text-base">{props.product.description}</p>
             </div>
         </div>
+        </Link>
     )
 }
 
